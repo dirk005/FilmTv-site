@@ -1,0 +1,29 @@
+.footer {
+    position: absolute;
+    bottom:-5rem;
+    width:100%;
+    padding: 1rem 0;
+    background-color: rgba(#000, 0.8);
+    color: #fff;
+    font-size: 1.6rem;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+  
+    &__link {
+      &:link,
+      &:visited {
+        color: royalblue;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.2s;
+      }
+  
+      &:hover,
+      &:active {
+        color: goldenrod;
+        // box-shadow: 0 1rem 2rem rgba(#000, 0.6);
+      }
+    }
+  }
+  
