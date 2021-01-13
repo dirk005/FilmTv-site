@@ -5,6 +5,7 @@ import storage from 'redux-persist/lib/storage';
 
 //Import files
 import userReducer from './user/user.reducer';
+import moviedbReducer from './moviedb/moviedb.reducer';
 
 //Set up persistconfig
 const persistConfig = {
@@ -13,7 +14,8 @@ const persistConfig = {
 }
 
 const rootReducer = combineReducers({
-    user:userReducer
+    user:userReducer,
+    moviedb:moviedbReducer
 })
 
 export default persistReducer(persistConfig,rootReducer);

@@ -27,8 +27,12 @@ const SignIn = ({ setCurrentUser }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setCurrentUser({ id: data.userId ,token:data.token,email:data.userData.email,name:data.userData.name})
+        setCurrentUser({
+          id: data.userId,
+          token: data.token,
+          email: data.userData.email,
+          name: data.userData.name,
+        });
         setCredentials({ email: "", password: "" });
       })
       .catch((err) => console.log(err));

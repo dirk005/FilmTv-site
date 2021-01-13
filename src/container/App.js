@@ -17,15 +17,10 @@ import MyShowsPage from "../pages/my-shows";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "../redux/user/user.selector";
-import { setCurrentUser } from "../redux/user/user.actions";
 
 class App extends Component {
-  componentDidMount() {
-    const { setCurrentUser } = this.props;
-  }
   render() {
     const { currentUser } = this.props;
-    console.log(currentUser)
     return (
       <div className="App">
         <Navigation />
@@ -51,8 +46,4 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 
-
 import FormInput from "./form-input";
 import CustomButton from "./custom-button";
 
-const SignUp = () => {
+import { connect } from "react-redux";
+import { setCurrentUser } from "../redux/user/user.actions";
+
+const SignUp = ({ setCurrentUser }) => {
   const [userCredentials, setCredentials] = useState({
     displayName: "",
     email: "",
@@ -14,35 +16,59 @@ const SignUp = () => {
 
   const { displayName, email, password, confirmPassword } = userCredentials;
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
       alert(`Passwords don't match`);
       return;
     }
-    // try {
-    //   // Create user
-    //   // const { user } = await auth.createUserWithEmailAndPassword(
-    //   //   email,
-    //   //   password
-    //   );
+    fetch(`http://localhost:8080/user/signup`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+        name: displayName,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        return fetch(`http://localhost:8080/user/login`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        });
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        setCurrentUser({
+          id: data.userId,
+          token: data.token,
+          email: data.userData.email,
+          name: data.userData.name,
+        });
+        setCredentials({
+          displayName: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        });
+      })
 
-    //   await createUserProfileDocument(user, { displayName });
-    //   userCredentials({
-    //     displayName: "",
-    //     email: "",
-    //     password: "",
-    //     confirmPassword: "",
-    //   });
-    // } catch (error) {
-    //   console.error(error);
-    // }
+      .catch((err) => console.log(err));
   };
 
   const handleChange = (event) => {
     const { value, name } = event.target;
-    userCredentials({ ...userCredentials, [name]: value });
+    setCredentials({ ...userCredentials, [name]: value });
   };
 
   return (
@@ -88,4 +114,7 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+});
+export default connect(null, mapDispatchToProps)(SignUp);
