@@ -1,16 +1,32 @@
+//Import packages
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+
+//redux imports
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import {store , persistor} from './redux/store';
+
+//import styles
 import "./index.scss";
+
+//import containers
 import App from "./container/App";
+
+//import react web reports
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <BrowserRouter>
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
+      </BrowserRouter>
+    </React.StrictMode>
+  </Provider>,
   document.getElementById("root")
 );
 
