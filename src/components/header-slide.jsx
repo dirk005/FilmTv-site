@@ -2,14 +2,13 @@ import React from "react";
 import { Slide } from "react-slideshow-image";
 
 import SlideDisplay from "./slide-display";
-import Loader from "./Loader";
 
 //Import Redux
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectTopMovies } from "../redux/moviedb/moviedb.selector";
 
-import 'react-slideshow-image/dist/styles.css' // needs to be imported for slideshow to work
+import "react-slideshow-image/dist/styles.css"; // needs to be imported for slideshow to work
 
 //Set prperties for Slideshow
 const properties = {
@@ -22,15 +21,11 @@ const properties = {
 
 const HeaderSlide = ({ topMovies }) => (
   <header className="header">
-    {topMovies ? (
-      <Slide className="header__slide " {...properties}>
-        {topMovies.map((data, key) => (
-          <SlideDisplay key={key} film={data} />
-        ))}
-      </Slide>
-    ) : (
-      <Loader />
-    )}
+    <Slide className="header__slide " {...properties}>
+      {topMovies.filter((film,key) => key <= 6).map((data, key) => (
+        <SlideDisplay key={key} film={data} />
+      ))}
+    </Slide>
   </header>
 );
 
