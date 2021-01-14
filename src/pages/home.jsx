@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import HeaderSlide from "../components/header-slide";
-import ScrollContainer from "../container/scroll-container";
+import HeaderSlide from '../components/header-slide';
+import ScrollContainer from '../container/scroll-container';
 
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import {
   getTopMovieStartAsync,
   getPopularMovieStartAsync,
@@ -11,11 +11,11 @@ import {
   getNowPlayingMovieStartAsync,
   getPopularTVStartAsync,
   getTopRatedTVStartAsync,
-} from "../redux/moviedb/moviedb.actoins";
-import { createStructuredSelector } from "reselect";
-import { selectIsPending } from "../redux/moviedb/moviedb.selector";
+} from '../redux/moviedb/moviedb.actoins';
+import { createStructuredSelector } from 'reselect';
+import { selectIsPending } from '../redux/moviedb/moviedb.selector';
 
-import Loader from "../components/Loader.js";
+import Loader from '../components/Loader.js';
 
 class HomePage extends Component {
   componentDidMount() {
@@ -29,7 +29,7 @@ class HomePage extends Component {
   render() {
     const { isPeding } = this.props;
     return (
-      <div className="homePage">
+      <div className='homePage'>
         {isPeding ? (
           <Loader />
         ) : (

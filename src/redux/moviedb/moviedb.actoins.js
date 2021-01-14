@@ -1,4 +1,4 @@
-import { MoviedbActionTypes } from "./moviebd.types";
+import { MoviedbActionTypes } from './moviebd.types';
 
 export const getMoviedbStart = () => ({
   type: MoviedbActionTypes.REQUEST_MOVIEDB_START,
@@ -37,9 +37,7 @@ export const getTopRatedTVSuccess = (movies) => ({
   payload: movies,
 });
 
-
 export const getTopMovieStartAsync = () => {
-  
   return (dispatch) => {
     dispatch(getMoviedbStart());
     return fetch(
@@ -54,7 +52,6 @@ export const getTopMovieStartAsync = () => {
 };
 
 export const getPopularMovieStartAsync = () => {
-  console.log("in action");
   return (dispatch) => {
     dispatch(getMoviedbStart());
     return fetch(
@@ -68,10 +65,7 @@ export const getPopularMovieStartAsync = () => {
   };
 };
 
-
-
 export const getUpcomingMovieStartAsync = () => {
-  console.log("in action");
   return (dispatch) => {
     dispatch(getMoviedbStart());
     return fetch(
@@ -85,10 +79,7 @@ export const getUpcomingMovieStartAsync = () => {
   };
 };
 
-
-
 export const getNowPlayingMovieStartAsync = () => {
-  console.log("in action");
   return (dispatch) => {
     dispatch(getMoviedbStart());
     return fetch(
@@ -103,7 +94,6 @@ export const getNowPlayingMovieStartAsync = () => {
 };
 
 export const getPopularTVStartAsync = () => {
-  console.log("in action");
   return (dispatch) => {
     dispatch(getMoviedbStart());
     return fetch(
@@ -118,7 +108,6 @@ export const getPopularTVStartAsync = () => {
 };
 
 export const getTopRatedTVStartAsync = () => {
-  console.log("in action");
   return (dispatch) => {
     dispatch(getMoviedbStart());
     return fetch(

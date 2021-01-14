@@ -1,4 +1,4 @@
-import { MoviedbActionTypes } from "./moviebd.types";
+import { MoviedbActionTypes } from './moviebd.types';
 
 const INITIAL_STATE = {
   nowPlayingMovies: null,

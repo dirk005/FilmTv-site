@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import FormInput from "./form-input";
-import CustomButton from "./custom-button";
+import FormInput from './form-input';
+import CustomButton from './custom-button';
 
-import { connect } from "react-redux";
-import { setCurrentUser } from "../redux/user/user.actions";
+import { connect } from 'react-redux';
+import { setCurrentUser } from '../redux/user/user.actions';
 
 const SignUp = ({ setCurrentUser }) => {
   const [userCredentials, setCredentials] = useState({
-    displayName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    displayName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   });
 
   const { displayName, email, password, confirmPassword } = userCredentials;
@@ -24,9 +24,9 @@ const SignUp = ({ setCurrentUser }) => {
       return;
     }
     fetch(`http://localhost:8080/user/signup`, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         email,
@@ -37,9 +37,9 @@ const SignUp = ({ setCurrentUser }) => {
       .then((res) => res.json())
       .then((data) => {
         return fetch(`http://localhost:8080/user/login`, {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             email,
@@ -56,10 +56,10 @@ const SignUp = ({ setCurrentUser }) => {
           name: data.userData.name,
         });
         setCredentials({
-          displayName: "",
-          email: "",
-          password: "",
-          confirmPassword: "",
+          displayName: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
         });
       })
 
@@ -72,43 +72,43 @@ const SignUp = ({ setCurrentUser }) => {
   };
 
   return (
-    <div className="sign-up">
-      <h2 className="title">I do not have a account</h2>
+    <div className='sign-up'>
+      <h2 className='title'>I do not have a account</h2>
       <span>Sign up with your email and password</span>
-      <form className="sign-up-form" onSubmit={handleSubmit}>
+      <form className='sign-up-form' onSubmit={handleSubmit}>
         <FormInput
-          name="displayName"
-          type="text"
-          label="Display Name"
+          name='displayName'
+          type='text'
+          label='Display Name'
           handleChange={handleChange}
           value={displayName}
           required
         />
         <FormInput
-          name="email"
-          type="email"
-          label="E-mail"
+          name='email'
+          type='email'
+          label='E-mail'
           handleChange={handleChange}
           value={email}
           required
         />
         <FormInput
-          name="password"
-          type="password"
-          label="Password"
+          name='password'
+          type='password'
+          label='Password'
           handleChange={handleChange}
           value={password}
           required
         />
         <FormInput
-          name="confirmPassword"
-          type="password"
-          label="Confirm Password"
+          name='confirmPassword'
+          type='password'
+          label='Confirm Password'
           handleChange={handleChange}
           value={confirmPassword}
           required
         />
-        <CustomButton type="submit">SIGN UP</CustomButton>
+        <CustomButton type='submit'>SIGN UP</CustomButton>
       </form>
     </div>
   );

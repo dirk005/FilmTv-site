@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 const Loader = () => (
-  <div className="load-spinner">
+  <div className='load-spinner'>
     <div></div>
     <div></div>
     <div></div>
