@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 
+import HeaderSlide from '../components/header-slide';
+
 import { connect } from "react-redux";
 import { getTopMovieStartAsync } from "../redux/moviedb/moviedb.actoins";
+
 
 class HomePage extends Component {
    
@@ -11,9 +14,8 @@ class HomePage extends Component {
   render() {
     return (
       <div className="homePage">
-        <div className="header">
-          <h1>Home Page</h1>
-        </div>
+      
+        <HeaderSlide/>
       </div>
     );
   }

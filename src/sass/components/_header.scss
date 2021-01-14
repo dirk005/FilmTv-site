@@ -1,117 +1,113 @@
-.header{
-    position: relative;
-    margin-bottom: 2rem;
-    
-    &__slide{
-              
-        @include respond(medium){ 
-            margin-top: 10rem; 
-        }
+.header {
+  position: relative;
+  margin-bottom: 2rem;
+  margin-top: 7rem;
 
-        &-each{
-            background-repeat:no-repeat;
-            //background-size: cover;
-            background-size:100% 80vh;
-            object-fit: cover;
-            height: 80vh;       
-            width: 100% !important;
-            position: relative;
-
-             @include respond(medium){ 
-                background-size:100% 50vh;
-                height: 50vh;  
-             }
-        }
-
-        &--heading{
-            position: absolute;
-            bottom:2%;
-            left:2rem;
-            width: 20%;              
-            font-size: 2.8rem;
-            font-weight: 600;
-            color: $color-white;
-            text-shadow: 0 .1rem .2rem $color-black;            
-            text-align: left;   
-             
-            @include respond(medium){ 
-                width: 30%;
-            }
-            
-            &-span{
-                padding: .5rem 1.5rem;
-                line-height: 1.6;
-                -webkit-box-decoration-break:clone;
-                box-decoration-break: clone;        
-                background-image: linear-gradient(to right bottom ,
-                    rgba($color-primary-light,.85),
-                    rgba($color-primary-dark ,.85));
-            }        
-        }
+  &__slide {
+    @include respond(medium) {
+      margin-top: 10rem;
     }
+
+    &-each {
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-size: 100% 100vh;
+      object-fit: cover;
+      height: 80vh;
+      width: 100% !important;
+      position: relative;
+
+      @include respond(medium) {
+        background-size: 100% 50vh;
+        height: 50vh;
+      }
+    }
+
+    &--heading {
+      position: absolute;
+      bottom: 1%;
+      left: 2rem;
+      width: 80%;
+      color: $color-white;
+      text-shadow: 0 0.1rem 0.2rem $color-black;
+      text-align: left;
+      padding-top: 10rem;
+
+      @include respond(medium) {
+        width: 30%;
+      }
+
+      &-span {
+        font-size: 2.8rem;
+        font-weight: 600;
+        padding: 0.5rem 1.5rem;
+        line-height: 1.6;
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
+        background-image: linear-gradient(
+          to right bottom,
+          rgba($color-primary-light, 0.85),
+          rgba($color-primary-dark, 0.85)
+        );
+      }
+    }
+    &--overview {
+      margin: 2rem 0;
+      font-size: 1.5rem;
+      font-weight: 50;
+      color: $color-white;
+      text-shadow: 0 0.1rem 0.2rem $color-black;
+      text-align: left;
+      padding: 1rem;
+      background-image: linear-gradient(
+        to right bottom,
+        rgba($color-black, 0.85),
+        rgba($color-primary-dark, 0.85)
+      );
+    }
+  }
 }
 
 //edit react slideshow package styles need important to override default styles
 .react-slideshow-container {
-    position: relative;
-    & .nav{
-        &:first-child{
-            position: absolute;
-            top:50%;
-            left: 1rem;
-            transform: translateY(-50%);
-        }
+  position: relative;
+  width: 100vw;
+  & + ul.indicators {
+    background: rgba($color-black, 0.9) !important;
+    padding: 4rem 0 !important;
 
-        &:last-child{
-            position: absolute;
-            top:50%;
-            right: 1rem;
-            transform: translateY(-50%);
-        }
-        
-        background: rgba($color-primary,.5) !important;  
-        border-radius: 1rem !important;  
-        height: 4rem !important;
-        width: 4rem !important;
-        
-        &:first-child span{
-            margin-left: 0 !important;
-        }
-
-        &:hover{
-            background: $color-primary !important;   
-        }
-    }   
-
-    & + div.indicators{
-        position: absolute;
-        bottom:40%;
-        right:2rem;
-        transform: translateX(-60%);
-        z-index: 10;
-        flex-direction: column;
-
-        @include respond(medium){ 
-            bottom:-2rem;
-            right:50%;
-            transform: translateX(50%);
-            flex-direction: row;
-        }
-
-        & > div{
-            background: rgba($color-primary,.6) !important;
-            margin-top:1rem;
-            height: 1rem !important;
-            width: 1rem !important;
-
-            &:hover{
-                background: rgba($color-primary-dark,.8) !important;
-            }
-
-            &.active{
-                background: rgba($color-black,.8) !important;
-            }
-        }
+    &:first-child span {
+      margin-left: 0 !important;
     }
+  }
 
+  & + ul.indicators {
+    position: absolute !important;
+    bottom: 0.5rem !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 10 !important;
+    flex-direction: row !important;
+    margin: 1rem 0 !important;
+    padding: 1rem !important;
+    border-radius: 1rem !important;
+
+    & > li {
+      padding: 1.1rem !important;
+    }
+    & .each-slideshow-indicator::before {
+      background: rgba($color-primary, 1) !important;
+      padding: 1rem !important;
+      height: 0.5rem !important;
+      width: 0.5rem !important;
+
+      &:hover {
+        background: rgba($color-primary-dark, 0.8) !important;
+      }
+
+      &.active {
+        background: rgba($color-black, 0.8) !important;
+      }
+    }
+  }
 }
