@@ -1,8 +1,9 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 import CustomButton from "./custom-button";
 
-const SlideDisplay = ({ film }) => (
+const SlideDisplay = ({ film, history }) => (
   <div
     className="header__slide-each "
     style={{
@@ -16,10 +17,14 @@ const SlideDisplay = ({ film }) => (
         <span className="header__slide--heading-span">{film.name}</span>
       )}
       <p className="header__slide--overview">{film.overview}</p>
-      <CustomButton type="submit">View</CustomButton>
+      <CustomButton
+        
+        onClick={() => history.push(`/details-page/:${film.id}`)}
+      >
+        View
+      </CustomButton>
     </div>
-    
   </div>
 );
 
-export default SlideDisplay;
+export default withRouter(SlideDisplay);
