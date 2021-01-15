@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 import CustomButton from './custom-button';
 
-const SlideDisplay = ({ film, history }) => (
+const SlideDisplay = ({ film, type, history }) => (
   <div
     className='header__slide-each '
     style={{
@@ -19,7 +19,7 @@ const SlideDisplay = ({ film, history }) => (
       <p className='header__slide--overview'>{film.overview}</p>
       <CustomButton
         
-        onClick={() => history.push(`/details-page/:${film.id}`)}
+        onClick={() => history.push(`/details-page/${type}/${film.id}`)}
       >
         View
       </CustomButton>

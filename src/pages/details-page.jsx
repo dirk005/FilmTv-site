@@ -1,10 +1,14 @@
-import React from 'react';
+import React from "react";
+import { Route } from "react-router-dom";
 
-const DetailsPage = () => (
-    <div className='DetailsPage' >
-        <h1>Details page</h1>
+import DisplayDetails from "../components/display-details";
 
+const DetailsPage = ({ match }) => {
+  return (
+    <div className="DetailsPage">     
+      <Route path={`${match.path}/:type/:mdbId`} component={DisplayDetails} />
     </div>
-)
+  );
+};
 
 export default DetailsPage;

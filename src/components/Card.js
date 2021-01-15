@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-const Card = ({ id, title, poster, rating, history }) => (
+const Card = ({ id, title, poster, rating,type, history }) => (
   <div className='card'>
     <figure className='card__shape'>
       <img
@@ -13,7 +13,7 @@ const Card = ({ id, title, poster, rating, history }) => (
       <figcaption className='card__shape--caption'>
         <button
           className='card__shape--caption-button'
-          onClick={() => history.push(`/details-page/:${id}`)}
+          onClick={() => history.push(`/details-page/${type}/${id}`)}
         >
           View
         </button>

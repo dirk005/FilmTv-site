@@ -25,7 +25,7 @@ const HeaderSlide = ({ topMovies }) => (
       {topMovies
         .filter((film, key) => key <= 6)
         .map((data, key) => (
-          <SlideDisplay key={key} film={data} />
+          <SlideDisplay key={key} film={data} type={topMovies.type} />
         ))}
     </Slide>
   </header>

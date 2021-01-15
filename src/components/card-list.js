@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './Card';
 
-const CardList = ({ films }) => (
+const CardList = ({ films, type }) => (
   <div className='cardlist'>
     {
       //DISPLAY ALL MOVIES AND SERIES IN FILMS ARRAY
@@ -17,6 +17,7 @@ const CardList = ({ films }) => (
             poster={film.poster_path}
             release_date={film.release_date}
             rating={film.vote_average}
+            type={type}
           />
         );
       })

@@ -12,11 +12,13 @@ import HomePage from '../pages/home';
 import DiscoverPage from '../pages/discover';
 import WatchListPage from '../pages/watch-list';
 import MyShowsPage from '../pages/my-shows';
+import  DetailsPage from '../pages/details-page'
 
 //Redux imports
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../redux/user/user.selector';
+
 
 class App extends Component {
   render() {
@@ -29,6 +31,7 @@ class App extends Component {
           <Route path='/discover' component={DiscoverPage} />
           <Route exact path='/watchlist' component={WatchListPage} />
           <Route exact path='/watchlist' component={MyShowsPage} />
+          <Route path='/details-page' component={DetailsPage} />
           <Route
             exact
             path='/signin'

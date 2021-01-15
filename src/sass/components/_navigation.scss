@@ -19,7 +19,7 @@
     justify-content: center;
     align-items: center;
   }
- 
+
   //position background and set color
   &__background {
     position: fixed;
@@ -73,8 +73,9 @@
     cursor: pointer;
 
     &-text {
-        padding:0 0.5rem;
+      padding: 0 0.5rem;
       font-size: 1.5em;
+      color: $color-black;
     }
 
     //Move linear background over link and change text color

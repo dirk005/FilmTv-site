@@ -1,5 +1,7 @@
 import { MoviedbActionTypes } from './moviebd.types';
 
+const apiKey = process.env.REACT_APP_MOVIEDB_API_KEY;
+
 export const getMoviedbStart = () => ({
   type: MoviedbActionTypes.REQUEST_MOVIEDB_START,
 });
@@ -41,10 +43,11 @@ export const getTopMovieStartAsync = () => {
   return (dispatch) => {
     dispatch(getMoviedbStart());
     return fetch(
-      `https://api.themoviedb.org/3/trending/movie/week?api_key=e88f04a0c3ba730c268e1240320d9aa8`
+      `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`
     )
       .then((res) => res.json())
       .then((data) => {
+        data.results['type'] = 'movie';
         dispatch(getTopMovieSuccess(data));
       })
       .catch((err) => dispatch(getMoviedbFailed(err.message)));
@@ -55,10 +58,11 @@ export const getPopularMovieStartAsync = () => {
   return (dispatch) => {
     dispatch(getMoviedbStart());
     return fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=e88f04a0c3ba730c268e1240320d9aa8&language=en-US&page=2`
+      `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=2`
     )
       .then((res) => res.json())
       .then((data) => {
+        data.results['type'] = 'movie';
         dispatch(getPopularMovieSuccess(data));
       })
       .catch((err) => dispatch(getMoviedbFailed(err.message)));
@@ -69,10 +73,11 @@ export const getUpcomingMovieStartAsync = () => {
   return (dispatch) => {
     dispatch(getMoviedbStart());
     return fetch(
-      `https://api.themoviedb.org/3/movie/upcoming?api_key=e88f04a0c3ba730c268e1240320d9aa8`
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}`
     )
       .then((res) => res.json())
       .then((data) => {
+        data.results['type'] = 'movie';
         dispatch(getUpcomingMovieSuccess(data));
       })
       .catch((err) => dispatch(getMoviedbFailed(err.message)));
@@ -83,10 +88,11 @@ export const getNowPlayingMovieStartAsync = () => {
   return (dispatch) => {
     dispatch(getMoviedbStart());
     return fetch(
-      `https://api.themoviedb.org/3/movie/now_playing?api_key=e88f04a0c3ba730c268e1240320d9aa8&language=en-US&page=1`
+      `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`
     )
       .then((res) => res.json())
       .then((data) => {
+        data.results['type'] = 'movie';
         dispatch(getNowPlayingMovieSuccess(data));
       })
       .catch((err) => dispatch(getMoviedbFailed(err.message)));
@@ -97,10 +103,11 @@ export const getPopularTVStartAsync = () => {
   return (dispatch) => {
     dispatch(getMoviedbStart());
     return fetch(
-      `https://api.themoviedb.org/3/tv/popular?api_key=e88f04a0c3ba730c268e1240320d9aa8&language=en-US&page=1`
+      `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=en-US&page=1`
     )
       .then((res) => res.json())
       .then((data) => {
+        data.results['type'] = 'tv';
         dispatch(getPopularTVSuccess(data));
       })
       .catch((err) => dispatch(getMoviedbFailed(err.message)));
@@ -111,10 +118,11 @@ export const getTopRatedTVStartAsync = () => {
   return (dispatch) => {
     dispatch(getMoviedbStart());
     return fetch(
-      `https://api.themoviedb.org/3/tv/top_rated?api_key=e88f04a0c3ba730c268e1240320d9aa8&language=en-US&page=20`
+      `https://api.themoviedb.org/3/tv/top_rated?api_key=${apiKey}&language=en-US&page=20`
     )
       .then((res) => res.json())
-      .then((data) => {
+      .then((data) => {     
+        data.results['type'] = 'tv';
         dispatch(getTopRatedTVSuccess(data));
       })
       .catch((err) => dispatch(getMoviedbFailed(err.message)));
