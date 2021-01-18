@@ -1,20 +1,19 @@
 /* MEDIA QUERY SIZES */
 // 1em  = 16px   eg. 600px / 16px = 37.5rem
 
-$bp-xxsmall:31.25em;         //0-500px                :xxsmall
-$bp-xsmall:37.5em;             //500px-600px        :xsmall
-$bp-small : 56.25em;          // 600px - 900px      : small
-$bp-medium : 68.75em;     // 900px -1100px      : medium
-$bp-large : 81.25em;          // 1100px -1300px    : large
-                                           // 1300px - 1800px   : Normal styles
-$bp-xlarge : 112.5em;        // 1800px  +              : xlarge
+$bp-xxsmall: 31.25em; //0-500px                :xxsmall
+$bp-xsmall: 37.5em; //500px-600px        :xsmall
+$bp-small: 56.25em; // 600px - 900px      : small
+$bp-medium: 68.75em; // 900px -1100px      : medium
+$bp-large: 81.25em; // 1100px -1300px    : large
+// 1300px - 1800px   : Normal styles
+$bp-xlarge: 112.5em; // 1800px  +              : xlarge
 
 /* COLORS */
-$color-primary:   rgb(128, 0, 128);
+$color-primary: rgb(128, 0, 128);
 
 $color-primary-light: rgb(168, 77, 168);
-$color-primary-dark:rgb(92, 3, 92);
-
+$color-primary-dark: rgb(92, 3, 92);
 
 $color-grey-light-1: #faf9f9;
 $color-grey-light-2: #f4f2f2;
@@ -25,12 +24,14 @@ $color-grey-dark-1: #111;
 $color-grey-dark-2: #777;
 $color-grey-dark-3: #999;
 
-$color-white:#fff;
-$color-black:#000;
+$color-white: #fff;
+$color-black: #000;
+
+
 
 /* FONTS */
 
-@import url('https://fonts.googleapis.com/css?family=Arvo');
+@import url("https://fonts.googleapis.com/css?family=Arvo");
 
-$default-font-size : 1.6rem;
-$font-arvo : 'Arvo', cursive;
+$default-font-size: 1.6rem;
+$font-arvo: "Arvo", cursive;

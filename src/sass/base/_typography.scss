@@ -1,13 +1,10 @@
-.heading{
-
-    &-secondary{
-        font-size: 3rem;
-        font-weight: 600;
-        color:$color-primary;
-        text-shadow: 0 .1rem .2rem $color-primary-dark;
-        //background-color: $color-primary-dark;
-        padding: .5rem 1.5rem;
-        
-    }
-
+.heading {
+  &-secondary {
+    font-size: 3rem;
+    font-weight: 600;
+    color: $color-primary;
+    text-shadow: 0 0.1rem 0.2rem $color-primary-dark;
+    //background-color: $color-primary-dark;
+    padding: 0.5rem 1.5rem;
+  }
 }

@@ -1,8 +1,10 @@
 import React from 'react';
 
+import Search from '../components/search';
+
 const DiscoverPage = () => (
-    <div className='DiscoverPage' >
-        <h1>Discover Page</h1>
+    <div className='discover-page' >
+        <Search />
     </div>
 )
 

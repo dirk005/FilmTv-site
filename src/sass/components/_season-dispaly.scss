@@ -1,0 +1,47 @@
+.season_display {
+  position: relative;
+  margin: 2rem;
+  font-size: 2rem;
+  
+  & .card {
+    background-color: black;
+    border: 2px solid $color-primary-dark;
+
+    & .card-header {
+      border: 1px solid $color-primary-dark;
+      cursor: pointer;
+    }
+  }
+
+  &-box {
+    
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    
+    &_text {
+      display: flex;
+      justify-content: space-between;
+      
+      
+    }
+
+    &__name {
+    }
+
+    &__count {
+    }
+  }
+  &-heading{
+    display: flex;
+    margin: 2rem;
+
+    &--image{
+      height: 40rem;
+      border:1px solid $color-primary-dark;
+    }
+
+    &--overview{
+      padding:2rem;
+    }
+  }
+}

@@ -1,25 +1,39 @@
 /* MEDIA QUERY MANAGER */
 
-@mixin respond($breakpoint){
-    @if $breakpoint == xxsmall {
-        @media only screen and (max-width : $bp-xxsmall){ @content };   
+@mixin respond($breakpoint) {
+  @if $breakpoint == xxsmall {
+    @media only screen and (max-width: $bp-xxsmall) {
+      @content;
     }
-    @if $breakpoint == xsmall {
-        @media only screen and (max-width : $bp-xsmall){ @content };   
+  }
+  @if $breakpoint == xsmall {
+    @media only screen and (max-width: $bp-xsmall) {
+      @content;
     }
-    @if $breakpoint == small {
-        @media only screen and (max-width : $bp-small){ @content };   
+  }
+  @if $breakpoint == small {
+    @media only screen and (max-width: $bp-small) {
+      @content;
     }
-     @if $breakpoint == medium {
-        @media only screen and (max-width : $bp-medium){ @content };  
+  }
+  @if $breakpoint == medium {
+    @media only screen and (max-width: $bp-medium) {
+      @content;
     }
-     @if $breakpoint == large {
-        @media only screen and (max-width : $bp-large){ @content };    
+  }
+  @if $breakpoint == large {
+    @media only screen and (max-width: $bp-large) {
+      @content;
     }
-     @if $breakpoint == xlarge {
-        @media only screen and (min-width : $bp-xlarge){ @content };   
+  }
+  @if $breakpoint == xlarge {
+    @media only screen and (min-width: $bp-xlarge) {
+      @content;
     }
-    @if $breakpoint == height {
-        @media only screen and (min-height : $bp-xxsmall){ @content };   
+  }
+  @if $breakpoint == height {
+    @media only screen and (min-height: $bp-xxsmall) {
+      @content;
     }
+  }
 }

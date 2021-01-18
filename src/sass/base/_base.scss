@@ -1,31 +1,31 @@
 /* RESET BROWSER DEFAULT STYLES */
 *,
 ::after,
-::before{
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
 }
 
-html{
-    font-size: 62.5%;  // 1rem =10px  -10/16 = 62.5% ( set default to 10px)
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-    
-    @include respond(medium){
-            font-size: 50% ; // 1rem = 8px smaller from 900px
-            scroll-behavior: auto; //remove smooth scrolling 
-    }
+html {
+  font-size: 62.5%; // 1rem =10px  -10/16 = 62.5% ( set default to 10px)
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+
+  @include respond(medium) {
+    font-size: 50%; // 1rem = 8px smaller from 900px
+    scroll-behavior: auto; //remove smooth scrolling
+  }
 }
 
-body{
-    font-family: $font-arvo;
-    background-color: $color-grey-dark-1;
-    color:$color-white;
+body {
+  font-family: $font-arvo;
+  background-color: $color-grey-dark-1;
+  color: $color-white;
 }
 
 /*  Change slection colors */
-::selection{
-    background-color: $color-primary;
-    color:$color-white;
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
 }

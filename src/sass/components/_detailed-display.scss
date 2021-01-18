@@ -4,7 +4,7 @@
   margin-top: 7rem;
 
   &__slide {
-      position: relative;
+    position: relative;
     @include respond(medium) {
       margin-top: 10rem;
     }
@@ -14,7 +14,7 @@
       background-size: cover;
       background-size: 100% 100vh;
       object-fit: cover;
-      height: 80vh;
+      height: 550px;
       width: 100% !important;
       position: relative;
 
@@ -91,47 +91,44 @@
       flex-direction: row;
 
       &_seperator {
-        margin: 1rem;        
+        margin: 1rem;
         text-shadow: 0 0.1rem 0.2rem $color-black;
         padding: 0.5rem 0.5rem;
-        border-radius: .5rem;
+        border-radius: 0.5rem;
         background-color: rgba($color-primary-dark, 0.5);
-       
       }
       &_genre:not(:last-child):after {
         content: ", ";
       }
     }
 
-    &--description{
-        display: flex;
-        flex-direction: column;
-        margin-top: 3rem;
-        margin-left: 1rem;
-        width: 80%;
+    &--description {
+      display: flex;
+      flex-direction: column;
+      margin-top: 3rem;
+      margin-left: 1rem;
+      width: 80%;
 
-        &_tagline{
-            color:rgba($color-grey-light-4, 0.9);
-            font-style: italic;
-        }
+      &_tagline {
+        color: rgba($color-grey-light-4, 0.9);
+        font-style: italic;
+      }
 
-        &_heading{
-            padding-top: 1.5rem;
-            font-size: 3rem;
-            
-        }
+      &_heading {
+        padding-top: 1.5rem;
+        font-size: 3rem;
+      }
 
-        &_overview{
-            line-height: 2.5rem;
-        }
+      &_overview {
+        line-height: 2.5rem;
+      }
     }
 
-    &--buttons{
-        position: absolute;
-        bottom: 5%;
-        left:35%;
-        transform: translateX(-50%);
-       
+    &--buttons {
+      position: absolute;
+      bottom: 5%;
+      left: 35%;
+      transform: translateX(-50%);
     }
   }
 }

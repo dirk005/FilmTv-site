@@ -2,24 +2,24 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 const Card = ({ id, title, poster, rating,type, history }) => (
-  <div className='card'>
-    <figure className='card__shape'>
+  <div className='cards'>
+    <figure className='cards__shape'>
       <img
-        className='card__shape--image'
+        className='cards__shape--image'
         src={`https://image.tmdb.org/t/p/w500${poster}`}
         alt={title}
       />
 
-      <figcaption className='card__shape--caption'>
+      <figcaption className='cards__shape--caption'>
         <button
-          className='card__shape--caption-button'
+          className='cards__shape--caption-button'
           onClick={() => history.push(`/details-page/${type}/${id}`)}
         >
           View
         </button>
       </figcaption>
     </figure>
-    <div className='card__rating'>{rating}</div>
+    <div className='cards__rating'>{rating}</div>
   </div>
 );
 
