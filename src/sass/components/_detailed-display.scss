@@ -127,8 +127,14 @@
     &--buttons {
       position: absolute;
       bottom: 5%;
-      left: 35%;
+      left: 40%;
       transform: translateX(-50%);
+      display: flex;
+      justify-content: space-between;
+      &-inner {
+        margin: 1rem 2rem;
+        font-size: 2rem;
+      }
     }
   }
 }

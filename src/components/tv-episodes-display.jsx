@@ -46,10 +46,10 @@ class TvEpisodeDisplay extends Component {
                 <span className="episode_display_line-first__text">
                   {episode.air_date}
                 </span>
-                <div class="pretty p-round p-fill p-icon">
+                <div className="pretty p-round p-fill p-icon">
                   <input type="checkbox" />
-                  <div class="state p-info">
-                    <i class="icon mdi mdi-check"></i>
+                  <div className="state p-info">
+                    <i className="icon mdi mdi-check"></i>
                     <label></label>
                   </div>
                 </div>

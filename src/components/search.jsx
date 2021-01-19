@@ -41,15 +41,18 @@ class Search extends Component {
     const { history } = this.props;
 
     return (
-      <div className="discover-page__search">
-        <FormInput
-          name="search"
-          type="text"
-          label="Search"
-          handleChange={this.handleChange}
-          value={this.state.searchField}
-          required
-        />
+      <div >
+        <div className="discover-page__search">
+          <FormInput
+            name="search"
+            type="text"
+            label="Search"
+            handleChange={this.handleChange}
+            value={this.state.searchField}
+            required
+          />
+        </div>
+
         <div className="discover-page__search-list">
           {searchData ? (
             <div>
@@ -96,7 +99,10 @@ class Search extends Component {
                 ))}
             </div>
           ) : (
-            <div> <ScrollContainer /> </div>
+            <div>
+              {" "}
+              <ScrollContainer />{" "}
+            </div>
           )}
         </div>
       </div>
