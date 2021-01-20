@@ -4,7 +4,7 @@ import { Accordion, Card } from "react-bootstrap";
 
 import TvEpisodeDisplay from "./tv-episodes-display";
 
-const TvSeasonDisplay = ({ seasons, id }) => (
+const TvSeasonDisplay = ({ seasons, id, gotShow }) => (
   <div className="season_display">
     <Accordion defaultActiveKey="0">
       {seasons
@@ -41,7 +41,9 @@ const TvSeasonDisplay = ({ seasons, id }) => (
                   </div>
                   <TvEpisodeDisplay
                     seasonId={id}
+                    showId={id}
                     season_number={season.season_number}
+                    gotShow={gotShow}
                   />
                 </Card.Body>
               </Accordion.Collapse>

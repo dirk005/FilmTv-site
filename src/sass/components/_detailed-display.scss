@@ -134,6 +134,12 @@
       &-inner {
         margin: 1rem 2rem;
         font-size: 2rem;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        &_check{
+          margin:1rem;
+        }
       }
     }
   }

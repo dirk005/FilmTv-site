@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
 import CustomButton from "./custom-button";
 
@@ -18,38 +19,45 @@ class MovieDisplay extends Component {
   }
 
   componentDidMount() {
-    //get current movie
-    fetch(`http://localhost:8080/movie/movie/${this.state.movieId}`, {
-      headers: {
-        Authorization: `Bearer ${this.props.currentUser.token}`,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((res) =>
-        res.watched
-          ? this.setState({ watched: res.watched, gotMovie: true })
-          : null
-      )
-      .catch((err) => console.log(err));
+    if (this.props.currentUser) {
+      //get current movie
+      fetch(`http://localhost:8080/movie/movie/${this.state.movieId}`, {
+        headers: {
+          Authorization: `Bearer ${this.props.currentUser.token}`,
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          return res.watched
+            ? this.setState({ watched: res.watched, gotMovie: true })
+            : null;
+        })
+        .catch((err) => console.log(err));
+    }
   }
 
   addMovie = () => {
-    fetch(`http://localhost:8080/movie/movies`, {
-      method: "POST",
-      body: JSON.stringify({
-        movieId: this.props.movieData.id,
-      }),
-      headers: {
-        Authorization: `Bearer ${this.props.currentUser.token}`,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((result) => result.json())
-      .then((res) => (res.movie ? this.setState({ gotMovie: true }) : null))
-      .catch((err) => console.log(err));
+    if (this.props.currentUser) {
+      fetch(`http://localhost:8080/movie/movies`, {
+        method: "POST",
+        body: JSON.stringify({
+          movieId: this.props.movieData.id,
+        }),
+        headers: {
+          Authorization: `Bearer ${this.props.currentUser.token}`,
+          "Content-Type": "application/json",
+        },
+      })
+        .then((result) => result.json())
+        .then((res) => (res.movie ? this.setState({ gotMovie: true }) : null))
+        .catch((err) => console.log(err));
+    } else {
+      this.props.history.push(`/signin`); // redirects to sign in page
+    }
   };
 
+  //Update movie watched status
   updateMovie = () => {
     fetch(`http://localhost:8080/movie/movie/${this.state.movieId}`, {
       method: "PUT",
@@ -66,6 +74,7 @@ class MovieDisplay extends Component {
       .catch((err) => console.log(err));
   };
 
+  //Remove movie from user
   removeMovie = () => {
     fetch(`http://localhost:8080/movie/movie/${this.state.movieId}`, {
       method: "DELETE",
@@ -87,9 +96,12 @@ class MovieDisplay extends Component {
       )
       .catch((err) => console.log(err));
   };
+
   render() {
+    //Get details fom state and props
     const { movieData } = this.props;
     const { gotMovie, watched } = this.state;
+
     return (
       <div
         className="detailed-display__slide-each"
@@ -161,26 +173,28 @@ class MovieDisplay extends Component {
             </div>
             <div className="detailed-display__slide--buttons">
               {gotMovie ? (
-                <CustomButton onClick={() => this.removeMovie()}>
-                  Remove
-                </CustomButton>
+                <div className="detailed-display__slide--buttons-inner">
+                  <CustomButton onClick={() => this.removeMovie()}>
+                    Remove
+                  </CustomButton>
+                  <div className="detailed-display__slide--buttons-inner">
+                    <span>Watched : </span>
+                    <div className="pretty p-round p-fill p-icon detailed-display__slide--buttons-inner_check">
+                      <input
+                        type="checkbox"
+                        checked={watched}
+                        onChange={() => this.updateMovie()}
+                      />
+                      <div className="state p-info">
+                        <i className="icon mdi mdi-check"></i>
+                        <label></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               ) : (
                 <CustomButton onClick={() => this.addMovie()}>Add</CustomButton>
               )}
-              <div className="detailed-display__slide--buttons-inner">
-                <span>Watched : </span>
-                <div className="pretty p-round p-fill p-icon">
-                  <input
-                    type="checkbox"
-                    checked={watched}
-                    onChange={() => this.updateMovie()}
-                  />
-                  <div className="state p-info">
-                    <i className="icon mdi mdi-check"></i>
-                    <label></label>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -191,4 +205,4 @@ class MovieDisplay extends Component {
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });
-export default connect(mapStateToProps)(MovieDisplay);
+export default connect(mapStateToProps)(withRouter(MovieDisplay));

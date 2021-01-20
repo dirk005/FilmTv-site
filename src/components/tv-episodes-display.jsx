@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import Loader from "./Loader";
+import TvEpisodeLine from "./tv-episode-line";
 
 class TvEpisodeDisplay extends Component {
   constructor(props) {
@@ -27,34 +28,13 @@ class TvEpisodeDisplay extends Component {
 
   render() {
     const { episodeData } = this.state;
-    console.log(episodeData);
+    const { gotShow } = this.props;
+
     return (
       <div className="episode_display">
         {episodeData ? (
           episodeData.episodes.map((episode, key) => (
-            <div className="episode_display_line" key={key}>
-              <div className="episode_display_line-first">
-                <span className="episode_display_line-first__text">
-                  {episode.episode_number}
-                </span>
-                <span className="episode_display_line-first__text">
-                  {episode.name}
-                </span>
-              </div>
-
-              <div className="episode_display-first">
-                <span className="episode_display_line-first__text">
-                  {episode.air_date}
-                </span>
-                <div className="pretty p-round p-fill p-icon">
-                  <input type="checkbox" />
-                  <div className="state p-info">
-                    <i className="icon mdi mdi-check"></i>
-                    <label></label>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <TvEpisodeLine key={key} gotShow={gotShow} episode={episode}  showId={this.props.showId}/>
           ))
         ) : (
           <Loader />
