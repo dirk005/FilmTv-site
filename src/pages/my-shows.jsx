@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { Component } from "react";
 
-const MyShowsPage = () => (
-    <div className='homePage' >
+class MyShowsPage extends Component {
+  render() {
+    return (
+      <div className="my-show">
         <h1>My shows Page</h1>
-    </div>
-)
+      </div>
+    );
+  }
+}
 
 export default MyShowsPage;

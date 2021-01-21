@@ -29,10 +29,8 @@ class TvDisplay extends Component {
       })
         .then((res) => res.json())
         .then((res) => {
-          console.log(res)
-          return res.gotShow 
-            ? this.setState({ gotShow: true })
-            : null;
+          console.log(res);
+          return res.gotShow ? this.setState({ gotShow: true }) : null;
         })
         .catch((err) => console.log(err));
     }
@@ -43,7 +41,7 @@ class TvDisplay extends Component {
       fetch(`http://localhost:8080/show/show`, {
         method: "POST",
         body: JSON.stringify({
-          showId: this.props.movieData.id,
+          showId: this.state.showId,
         }),
         headers: {
           Authorization: `Bearer ${this.props.currentUser.token}`,
@@ -71,12 +69,13 @@ class TvDisplay extends Component {
       },
     })
       .then((result) => result.json())
-      .then((res) =>
+      .then((res) => {
         this.setState({
           showId: this.props.movieData.id,
           gotShow: false,
-        })
-      )
+        });
+        window.location.reload(false);
+      })
       .catch((err) => console.log(err));
   };
 

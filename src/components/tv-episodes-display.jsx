@@ -11,6 +11,7 @@ class TvEpisodeDisplay extends Component {
       id: this.props.seasonId,
       season_number: this.props.season_number,
       episodeData: null,
+      gotShow: this.props.gotShow,
     };
   }
 
@@ -27,8 +28,8 @@ class TvEpisodeDisplay extends Component {
   }
 
   render() {
-    const { episodeData } = this.state;
-    const { gotShow } = this.props;
+    const { episodeData ,gotShow} = this.state;
+    
 
     return (
       <div className="episode_display">

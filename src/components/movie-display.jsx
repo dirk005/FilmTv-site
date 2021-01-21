@@ -29,7 +29,7 @@ class MovieDisplay extends Component {
       })
         .then((res) => res.json())
         .then((res) => {
-          return res.watched
+          return res.gotMovie
             ? this.setState({ watched: res.watched, gotMovie: true })
             : null;
         })

@@ -14,14 +14,16 @@ class TvEpisodeLine extends Component {
       episodeId: this.props.episode.id,
       episode: this.props.episode,
       watched: false,
+      gotShow: this.props.gotShow,
     };
   }
 
   componentDidMount() {
     if (this.props.currentUser) {
       //get current episode
+      console.log(this.state);
       fetch(
-        `http://localhost:8080/episode/episode/${this.state.episodeId}/${this.state.showId}`,
+        `http://localhost:8080/episode/episode/?episodeId=${this.state.episodeId}&showId=${this.state.showId}`,
         {
           headers: {
             Authorization: `Bearer ${this.props.currentUser.token}`,
@@ -30,7 +32,8 @@ class TvEpisodeLine extends Component {
         }
       )
         .then((res) => res.json())
-        .then((res) => {         
+        .then((res) => {
+          console.log(res);
           return res.watched ? this.setState({ watched: true }) : null;
         })
         .catch((err) => console.log(err));
@@ -42,8 +45,8 @@ class TvEpisodeLine extends Component {
       fetch(`http://localhost:8080/episode/episode`, {
         method: "POST",
         body: JSON.stringify({
-          episodeId: this.props.episode.id,
-          showId: this.props.showId,
+          episodeId: this.state.episodeId,
+          showId: this.state.showId,
         }),
         headers: {
           Authorization: `Bearer ${this.props.currentUser.token}`,
@@ -58,7 +61,7 @@ class TvEpisodeLine extends Component {
     }
   };
 
-  //Remove show from user
+  //Remove episode from user
   removeEpisode = () => {
     fetch(`http://localhost:8080/episode/episode`, {
       method: "DELETE",
@@ -72,18 +75,17 @@ class TvEpisodeLine extends Component {
       },
     })
       .then((result) => result.json())
-      .then((res) =>
+      .then((res) => {
         this.setState({
           watched: false,
-        })
-      )
+        });
+      })
       .catch((err) => console.log(err));
   };
 
   render() {
     const { gotShow, episode } = this.props;
     const { watched } = this.state;
-
     return (
       <div className="episode_display_line">
         <div className="episode_display_line-first">
@@ -99,23 +101,19 @@ class TvEpisodeLine extends Component {
           <span className="episode_display_line-first__text">
             {episode.air_date}
           </span>
-          {gotShow ? (
-            <div className="pretty p-round p-fill p-icon">
-              <input
-                type="checkbox"
-                checked={watched}
-                onChange={() =>
-                  watched ? this.removeEpisode() : this.addEpisode()
-                }
-              />
-              <div className="state p-info">
-                <i className="icon mdi mdi-check"></i>
-                <label></label>
-              </div>
+          <div className="pretty p-round p-fill p-icon">
+            <input
+              type="checkbox"
+              checked={watched}
+              onChange={() =>
+                watched ? this.removeEpisode() : this.addEpisode()
+              }
+            />
+            <div className="state p-info">
+              <i className="icon mdi mdi-check"></i>
+              <label></label>
             </div>
-          ) : (
-            <div />
-          )}
+          </div>
         </div>
       </div>
     );
