@@ -12,16 +12,25 @@ class MovieDisplay extends Component {
     super(props);
 
     this.state = {
-      watched: false,
-      movieId: this.props.movieData.id,
+      watched: false,      
       gotMovie: false,
     };
   }
 
   componentDidMount() {
+    this.handleGetDetails();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.movieData.id !== this.props.movieData.id) {      
+      this.handleGetDetails();
+    }
+  }
+
+  handleGetDetails = () => {
     if (this.props.currentUser) {
       //get current movie
-      fetch(`http://localhost:8080/movie/movie/${this.state.movieId}`, {
+      fetch(`http://localhost:8080/movie/movie/${this.props.movieData.id}`, {
         headers: {
           Authorization: `Bearer ${this.props.currentUser.token}`,
           "Content-Type": "application/json",
@@ -35,7 +44,7 @@ class MovieDisplay extends Component {
         })
         .catch((err) => console.log(err));
     }
-  }
+  };
 
   addMovie = () => {
     if (this.props.currentUser) {
@@ -59,7 +68,7 @@ class MovieDisplay extends Component {
 
   //Update movie watched status
   updateMovie = () => {
-    fetch(`http://localhost:8080/movie/movie/${this.state.movieId}`, {
+    fetch(`http://localhost:8080/movie/movie/${this.props.movieData.id}`, {
       method: "PUT",
       body: JSON.stringify({
         movieId: this.props.movieData.id,
@@ -76,7 +85,7 @@ class MovieDisplay extends Component {
 
   //Remove movie from user
   removeMovie = () => {
-    fetch(`http://localhost:8080/movie/movie/${this.state.movieId}`, {
+    fetch(`http://localhost:8080/movie/movie/${this.props.movieData.id}`, {
       method: "DELETE",
       body: JSON.stringify({
         movieId: this.props.movieData.id,
@@ -109,7 +118,6 @@ class MovieDisplay extends Component {
           backgroundImage: `url(https://image.tmdb.org/t/p/original${movieData.backdrop_path})`,
         }}
       >
-        <div className="detailed-display__slide-each-overlay"></div>
         <div className="detailed-display__slide_container">
           <div className="detailed-display__slide-box--image">
             <img

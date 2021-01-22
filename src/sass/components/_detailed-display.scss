@@ -5,39 +5,36 @@
 
   &__slide {
     position: relative;
+
     @include respond(medium) {
       margin-top: 10rem;
     }
 
     &-each {
       background-repeat: no-repeat;
-      background-size: cover;
-      background-size: 100% 100vh;
+      background-size: cover;      
       object-fit: cover;
       height: 550px;
       width: 100% !important;
-      position: relative;
+      position: relative;     
+      margin-bottom: 2rem;
+      border: 2px solid $color-primary-dark;
+      -webkit-box-shadow: inset -1px 1px 15px -3px $color-primary-light;
+      box-shadow: inset -1px 1px 15px -3px $color-primary-light;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+      }
 
       @include respond(medium) {
         background-size: 100% 50vh;
         height: 50vh;
-      }
-      &-overlay {
-        position: fixed; /* Sit on top of the page content */
-        // display: none; /* Hidden by default */
-        width: 100%; /* Full width (cover the whole page) */
-        height: 100%; /* Full height (cover the whole page) */
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(
-          0,
-          0,
-          0,
-          0.8
-        ); /* Black background with opacity */
-        // z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
       }
     }
 
@@ -127,18 +124,17 @@
     &--buttons {
       position: absolute;
       bottom: 5%;
-      left: 40%;
-      transform: translateX(-50%);
-      display: flex;
-      justify-content: space-between;
+      right: 1px;    
+      margin: 1rem; 
+
       &-inner {
         margin: 1rem 2rem;
         font-size: 2rem;
-        display:flex;
+        display: flex;
         justify-content: center;
         align-items: center;
-        &_check{
-          margin:1rem;
+        &_check {
+          margin: 1rem;
         }
       }
     }

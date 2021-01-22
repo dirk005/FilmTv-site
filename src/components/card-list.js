@@ -1,15 +1,14 @@
-import React from 'react';
-import Card from './Card';
+import React from "react";
+import Card from "./Card";
 
 const CardList = ({ films, type }) => (
-  <div className='cardlist'>
-    {
-      //DISPLAY ALL MOVIES AND SERIES IN FILMS ARRAY
+  <div className="cardlist">
+    {films.length > 1 ? (
       films.map((film, i) => {
-        
+        //DISPLAY ALL MOVIES AND SERIES IN FILMS ARRAY
         return (
           <Card
-            className='cardlist'
+            className="cardlist"
             key={film.id}
             id={film.id}
             title={film.title}
@@ -21,7 +20,9 @@ const CardList = ({ films, type }) => (
           />
         );
       })
-    }
+    ) : (
+      <div></div>
+    )}
   </div>
 );
 export default CardList;

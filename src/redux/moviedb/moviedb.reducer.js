@@ -7,7 +7,7 @@ const INITIAL_STATE = {
   popularMovies: null,
   popularTv: null,
   topRatedTv:null,
-  isPending: false,
+  isPending: true,
   errorMessage: undefined,
 };
 
@@ -21,25 +21,25 @@ const moviedbReducer = (state = INITIAL_STATE, action) => {
     case MoviedbActionTypes.REQUEST_TOP_MOVIES_SUCCESS:
       return {
         ...state,
-        // isPending: false,
+        isPending: false,
         topMovies: action.payload,
       };
     case MoviedbActionTypes.REQUEST_POPULAR_MOVIES_SUCCESS:
       return {
         ...state,
-        // isPending: false,
+        isPending: false,
         popularMovies: action.payload,
       };
     case MoviedbActionTypes.REQUEST_UPCOMING_MOVIES_SUCCESS:
       return {
         ...state,
-        // isPending: false,
+        isPending: false,
         upcomingMovies: action.payload,
       };
     case MoviedbActionTypes.REQUEST_NOWPLAYING_MOVIES_SUCCESS:
       return {
         ...state,
-        // isPending: false,
+        isPending: false,
         nowPlayingMovies: action.payload,
       };
     case MoviedbActionTypes.REQUEST_POPULAR_TV_SUCCESS:
