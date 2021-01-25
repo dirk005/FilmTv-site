@@ -24,7 +24,6 @@ class WatchListMovie extends Component {
   componentDidUpdate(prevProps, prevState) {
     
     if (prevProps.movie.movieId!== this.props.movie.movieId) {
-      // this.setState({ id: this.props.movie.movieId});
       this.handleGetDetails();
     }
   }

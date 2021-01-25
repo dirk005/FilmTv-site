@@ -20,8 +20,12 @@ class TvDisplay extends Component {
 
   componentDidMount() {
     if (this.props.currentUser) {
+      let url = 'https://floating-journey-19460.herokuapp.com/';
+      if (process.env.NODE_ENV === 'development'){
+        url = 'http://localhost:8080'
+    }
       //get current movie
-      fetch(`http://localhost:8080/show/show/${this.state.showId}`, {
+      fetch(`${url}/show/show/${this.state.showId}`, {
         headers: {
           Authorization: `Bearer ${this.props.currentUser.token}`,
           "Content-Type": "application/json",
@@ -38,7 +42,11 @@ class TvDisplay extends Component {
 
   addShow = () => {
     if (this.props.currentUser) {
-      fetch(`http://localhost:8080/show/show`, {
+      let url = 'https://floating-journey-19460.herokuapp.com/';
+      if (process.env.NODE_ENV === 'development'){
+        url = 'http://localhost:8080'
+    }
+      fetch(`${url}/show/show`, {
         method: "POST",
         body: JSON.stringify({
           showId: this.state.showId,
@@ -58,7 +66,11 @@ class TvDisplay extends Component {
 
   //Remove show from user
   removeShow = () => {
-    fetch(`http://localhost:8080/show/show/${this.state.showId}`, {
+    let url = 'https://floating-journey-19460.herokuapp.com/';
+      if (process.env.NODE_ENV === 'development'){
+        url = 'http://localhost:8080'
+    }
+    fetch(`${url}/show/show/${this.state.showId}`, {
       method: "DELETE",
       body: JSON.stringify({
         showId: this.props.movieData.id,

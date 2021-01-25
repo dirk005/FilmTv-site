@@ -29,7 +29,11 @@ class WatchListPage extends Component {
 
   handleGetMovieDetails = () => {
     if (this.props.currentUser) {
-      fetch(`http://localhost:8080/movie/movies`, {
+      let url = 'https://floating-journey-19460.herokuapp.com/';
+      if (process.env.NODE_ENV === 'development'){
+        url = 'http://localhost:8080'
+    }
+      fetch(`${url}/movie/movies`, {
         headers: {
           Authorization: `Bearer ${this.props.currentUser.token}`,
           "Content-Type": "application/json",
@@ -53,7 +57,11 @@ class WatchListPage extends Component {
 
   handleGetTvDetails = () => {
     if (this.props.currentUser) {
-      fetch(`http://localhost:8080/show/shows`, {
+      let url = 'https://floating-journey-19460.herokuapp.com/';
+      if (process.env.NODE_ENV === 'development'){
+        url = 'http://localhost:8080'
+    }
+      fetch(`${url}/show/shows`, {
         headers: {
           Authorization: `Bearer ${this.props.currentUser.token}`,
           "Content-Type": "application/json",

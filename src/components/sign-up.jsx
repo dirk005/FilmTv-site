@@ -17,13 +17,17 @@ const SignUp = ({ setCurrentUser }) => {
   const { displayName, email, password, confirmPassword } = userCredentials;
 
   const handleSubmit = (event) => {
+    let url = 'https://floating-journey-19460.herokuapp.com/';
+      if (process.env.NODE_ENV === 'development'){
+        url = 'http://localhost:8080'
+    }
     event.preventDefault();
 
     if (password !== confirmPassword) {
       alert(`Passwords don't match`);
       return;
     }
-    fetch(`http://localhost:8080/user/signup`, {
+    fetch(`${url}/user/signup`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -36,7 +40,7 @@ const SignUp = ({ setCurrentUser }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        return fetch(`http://localhost:8080/user/login`, {
+        return fetch(`${url}/user/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

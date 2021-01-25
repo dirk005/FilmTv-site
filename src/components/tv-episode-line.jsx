@@ -45,7 +45,11 @@ class TvEpisodeLine extends Component {
 
   addEpisode = () => {
     if (this.props.currentUser) {
-      fetch(`http://localhost:8080/episode/episode`, {
+      let url = 'https://floating-journey-19460.herokuapp.com/';
+      if (process.env.NODE_ENV === 'development'){
+        url = 'http://localhost:8080'
+    }
+      fetch(`${url}/episode/episode`, {
         method: "POST",
         body: JSON.stringify({
           episodeId: this.state.episodeId,
@@ -66,7 +70,11 @@ class TvEpisodeLine extends Component {
 
   //Remove episode from user
   removeEpisode = () => {
-    fetch(`http://localhost:8080/episode/episode`, {
+    let url = 'https://floating-journey-19460.herokuapp.com/';
+      if (process.env.NODE_ENV === 'development'){
+        url = 'http://localhost:8080'
+    }
+    fetch(`${url}/episode/episode`, {
       method: "DELETE",
       body: JSON.stringify({
         showId: this.state.showId,

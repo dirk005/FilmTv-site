@@ -30,7 +30,11 @@ class MovieDisplay extends Component {
   handleGetDetails = () => {
     if (this.props.currentUser) {
       //get current movie
-      fetch(`http://localhost:8080/movie/movie/${this.props.movieData.id}`, {
+      let url = 'https://floating-journey-19460.herokuapp.com/';
+      if (process.env.NODE_ENV === 'development'){
+        url = 'http://localhost:8080'
+    }
+      fetch(`${url}/movie/movie/${this.props.movieData.id}`, {
         headers: {
           Authorization: `Bearer ${this.props.currentUser.token}`,
           "Content-Type": "application/json",
@@ -48,7 +52,11 @@ class MovieDisplay extends Component {
 
   addMovie = () => {
     if (this.props.currentUser) {
-      fetch(`http://localhost:8080/movie/movies`, {
+      let url = 'https://floating-journey-19460.herokuapp.com/';
+      if (process.env.NODE_ENV === 'development'){
+        url = 'http://localhost:8080'
+    }
+      fetch(`${url}/movie/movies`, {
         method: "POST",
         body: JSON.stringify({
           movieId: this.props.movieData.id,
@@ -68,7 +76,11 @@ class MovieDisplay extends Component {
 
   //Update movie watched status
   updateMovie = () => {
-    fetch(`http://localhost:8080/movie/movie/${this.props.movieData.id}`, {
+    let url = 'https://floating-journey-19460.herokuapp.com/';
+      if (process.env.NODE_ENV === 'development'){
+        url = 'http://localhost:8080'
+    }
+    fetch(`${url}/movie/movie/${this.props.movieData.id}`, {
       method: "PUT",
       body: JSON.stringify({
         movieId: this.props.movieData.id,
@@ -85,7 +97,11 @@ class MovieDisplay extends Component {
 
   //Remove movie from user
   removeMovie = () => {
-    fetch(`http://localhost:8080/movie/movie/${this.props.movieData.id}`, {
+    let url = 'https://floating-journey-19460.herokuapp.com/';
+      if (process.env.NODE_ENV === 'development'){
+        url = 'http://localhost:8080'
+    }
+    fetch(`${url}/movie/movie/${this.props.movieData.id}`, {
       method: "DELETE",
       body: JSON.stringify({
         movieId: this.props.movieData.id,
