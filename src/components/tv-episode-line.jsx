@@ -14,14 +14,12 @@ class TvEpisodeLine extends Component {
       episodeId: this.props.episode.id,
       episode: this.props.episode,
       watched: false,
-      gotShow: this.props.gotShow,
     };
   }
 
   componentDidMount() {
     if (this.props.currentUser) {
       //get current episode
-      console.log(this.state);
       fetch(
         `http://localhost:8080/episode/episode/?episodeId=${this.state.episodeId}&showId=${this.state.showId}`,
         {
@@ -33,10 +31,15 @@ class TvEpisodeLine extends Component {
       )
         .then((res) => res.json())
         .then((res) => {
-          console.log(res);
-          return res.watched ? this.setState({ watched: true }) : null;
+          return res.watched
+            ? this.setState({ watched: true })
+            : this.setState({ watched: false });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          this.setState({
+            watched: false,
+          });
+        });
     }
   }
 
@@ -84,8 +87,9 @@ class TvEpisodeLine extends Component {
   };
 
   render() {
-    const { gotShow, episode } = this.props;
+    const { episode } = this.props;
     const { watched } = this.state;
+
     return (
       <div className="episode_display_line">
         <div className="episode_display_line-first">
@@ -98,20 +102,25 @@ class TvEpisodeLine extends Component {
         </div>
 
         <div className="episode_display-first">
-          <span className="episode_display_line-first__text">
-            {episode.air_date}
-          </span>
-          <div className="pretty p-round p-fill p-icon">
-            <input
-              type="checkbox"
-              checked={watched}
-              onChange={() =>
-                watched ? this.removeEpisode() : this.addEpisode()
-              }
-            />
-            <div className="state p-info">
-              <i className="icon mdi mdi-check"></i>
-              <label></label>
+          <div className="episode_display_line-first">
+            <div className="episode_display_line-first__box">
+              <span className="episode_display_line-first__text">
+                {episode.air_date}
+              </span>
+
+              <div>
+                <div class="checkbox">
+                  <input
+                    type="checkbox"
+                    checked={watched}
+                    id={`checkbox${episode.id}`}
+                    onChange={() =>
+                      watched ? this.removeEpisode() : this.addEpisode()
+                    }
+                  />
+                  <label for={`checkbox${episode.id}`}></label>
+                </div>
+              </div>
             </div>
           </div>
         </div>

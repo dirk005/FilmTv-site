@@ -80,7 +80,7 @@ class TvDisplay extends Component {
   };
 
   render() {
-    const { movieData } = this.props;
+    const { movieData, displaySeason, history } = this.props;
     const { gotShow } = this.state;
 
     return (
@@ -170,15 +170,33 @@ class TvDisplay extends Component {
                     Add
                   </CustomButton>
                 )}
+                {!displaySeason ? (
+                  <div className="detailed-display__slide--buttons-inner">
+                    <CustomButton
+                      
+                      onClick={() =>
+                        history.push(`/details-page/tv/${movieData.id}`)
+                      }
+                    >
+                      View
+                    </CustomButton>
+                  </div>
+                ) : (
+                  <div></div>
+                )}
               </div>
             </div>
           </div>
         </div>
-        <TvSeasonDisplay
-          seasons={movieData.seasons}
-          id={movieData.id}
-          gotShow={gotShow}
-        />
+        {displaySeason ? (
+          <TvSeasonDisplay
+            seasons={movieData.seasons}
+            id={movieData.id}
+            gotShow={gotShow}
+          />
+        ) : (
+          <div></div>
+        )}
       </div>
     );
   }

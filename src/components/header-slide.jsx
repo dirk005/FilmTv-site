@@ -20,7 +20,7 @@ const properties = {
 };
 
 const HeaderSlide = ({ topMovies }) => (
-  <header className='header'>
+  <header className='header grab'>
     <Slide className='header__slide ' {...properties}>
       {topMovies
         .filter((film, key) => key <= 6)

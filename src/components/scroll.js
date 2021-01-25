@@ -25,7 +25,7 @@ const Scroll = ({
   return (
     <div>
       <h2 className="heading-secondary">{header} </h2>
-      <ScrollContainer className="scroll-container">
+      <ScrollContainer className="scroll-container scroller grab" hideScrollbars={false}>
         <CardList
           films={
             films === "popularMovies"

@@ -28,14 +28,14 @@ class TvEpisodeDisplay extends Component {
   }
 
   render() {
-    const { episodeData ,gotShow} = this.state;
+    const { episodeData } = this.state;
     
 
     return (
       <div className="episode_display">
         {episodeData ? (
           episodeData.episodes.map((episode, key) => (
-            <TvEpisodeLine key={key} gotShow={gotShow} episode={episode}  showId={this.props.showId}/>
+            <TvEpisodeLine key={key} episode={episode}  showId={this.props.showId}/>
           ))
         ) : (
           <Loader />

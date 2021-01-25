@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "../redux/user/user.selector";
 
 import WatchListMovie from "../components/watch-list-movie";
+import WatchListTv from "../components/watch-list-tv";
+import CustomButton from "../components/custom-button";
 
 class WatchListPage extends Component {
   constructor(props) {
@@ -12,15 +15,19 @@ class WatchListPage extends Component {
 
     this.state = {
       movies: null,
+      tv: null,
       selectedOption: "all",
+      selectedType: "movie",
       displayMovies: null,
+      displayShow: null,
     };
   }
   componentDidMount() {
-    this.handleGetDetails();
+    this.handleGetMovieDetails();
+    this.handleGetTvDetails();
   }
 
-  handleGetDetails = () => {
+  handleGetMovieDetails = () => {
     if (this.props.currentUser) {
       fetch(`http://localhost:8080/movie/movies`, {
         headers: {
@@ -30,8 +37,40 @@ class WatchListPage extends Component {
       })
         .then((res) => res.json())
         .then((res) => {
-          console.log(res.movies);
+          if (!res.movies) {
+            return this.setState({ tv: null, displayShow: null });
+          }
+          if (Array.isArray(res.movies)) {
+            if (res.movies.length === 0) {
+              return this.setState({ tv: null, displayShow: null });
+            }
+          }
           this.setState({ movies: res.movies, displayMovies: res.movies });
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
+  handleGetTvDetails = () => {
+    if (this.props.currentUser) {
+      fetch(`http://localhost:8080/show/shows`, {
+        headers: {
+          Authorization: `Bearer ${this.props.currentUser.token}`,
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if (!res.shows) {
+            return this.setState({ tv: null, displayShow: null });
+          }
+          if (Array.isArray(res.shows)) {
+            if (res.shows.length === 0) {
+              return this.setState({ tv: null, displayShow: null });
+            }
+          }
+
+          this.setState({ tv: res.shows, displayShow: res.shows });
         })
         .catch((err) => console.log(err));
     }
@@ -43,10 +82,10 @@ class WatchListPage extends Component {
     const displayMovies = this.state.movies.filter(
       (movie) =>
         selectedOption === "watched"
-          ? movie.watched === true // return watched movies
+          ? movie.watched === true // return watched shows
           : selectedOption === "toWatch"
-          ? movie.watched === false // return movies to watch
-          : true // return all movies
+          ? movie.watched === false // return show to watch
+          : true // return all shows
     );
 
     this.setState({
@@ -55,44 +94,118 @@ class WatchListPage extends Component {
     });
   };
 
+  handleTypeChange = (event) => {
+    const selectedType = event.target.value;
+
+    this.setState({
+      selectedType: selectedType,
+    });
+  };
   render() {
-    const { displayMovies, selectedOption } = this.state;
+    const {
+      displayMovies,
+      selectedOption,
+      selectedType,
+      displayShow,
+    } = this.state;
+    const { history } = this.props;
+
     return (
       <div className="watch-list">
         <h2 className="heading-secondary">My Watch List</h2>
         <div>
-          <input
-            type="radio"
-            value="all"
-            name="all"
-            checked={selectedOption === "all"}
-            onChange={this.handleOptionChange}
-          />{" "}
-          All
-          <input
-            type="radio"
-            value="watched"
-            name="watched"
-            checked={selectedOption === "watched"}
-            onChange={this.handleOptionChange}
-          />{" "}
-          Watched
-          <input
-            type="radio"
-            value="toWatch"
-            name="toWatch"
-            checked={selectedOption === "toWatch"}
-            onChange={this.handleOptionChange}
-          />{" "}
-          To Watch
+          <h3 className="heading-tertiary">Filter</h3>
+          <div className="watch-list-selections">
+            <div class="checkbox">
+              <input
+                type="checkbox"
+                value="movie"
+                id="checkboxMovie"
+                name="movie"
+                checked={selectedType === "movie"}
+                onChange={this.handleTypeChange}
+              />
+              <label for="checkboxMovie"></label>
+            </div>
+            <span>Movie</span>
+
+            <div class="checkbox">
+              <input
+                type="checkbox"
+                value="tv"
+                id="checkboxTv"
+                name="tv"
+                checked={selectedType === "tv"}
+                onChange={this.handleTypeChange}
+              />
+              <label for="checkboxTv"></label>
+            </div>
+            <span>Series</span>
+          </div>
         </div>
+        {selectedType === "movie" ? (
+          <div className="watch-list-selections">
+            <div class="checkbox">
+              <input
+                type="checkbox"
+                value="all"
+                id="checkboxAll"
+                name="all"
+                checked={selectedOption === "all"}
+                onChange={this.handleOptionChange}
+              />
+              <label for="checkboxAll"></label>
+            </div>
+            <span>All</span>
+
+            <div class="checkbox">
+              <input
+                type="checkbox"
+                value="watched"
+                id="checkboxWatched"
+                name="watched"
+                checked={selectedOption === "watched"}
+                onChange={this.handleOptionChange}
+              />
+              <label for="checkboxWatched"></label>
+            </div>
+            <span>Watched</span>
+
+            <div class="checkbox">
+              <input
+                type="checkbox"
+                value="toWatch"
+                id="checkboxWatch"
+                name="toWatch"
+                checked={selectedOption === "toWatch"}
+                onChange={this.handleOptionChange}
+              />
+              <label for="checkboxWatch"></label>
+            </div>
+            <span>To Watch</span>
+          </div>
+        ) : (
+          <div></div>
+        )}
+
         <div className="watch-list__box">
-          {displayMovies ? (
-            displayMovies.map((movie, key) => {
-              return <WatchListMovie key={key} movie={movie} />;
-            })
+          {selectedType === "movie" && displayMovies ? (
+            displayMovies.map((movie, key) => (
+              <WatchListMovie key={key} movie={movie} />
+            ))
+          ) : selectedType === "tv" && displayShow ? (
+            displayShow.map((show, key) => (
+              <WatchListTv key={key} show={show} />
+            ))
           ) : (
-            <div></div>
+            <div className="watch-list__box-text">
+              <span >{`Add ${
+                selectedType === "movie" ? "Movies" : "Tv Shows"
+              } to your list`}</span>
+              <CustomButton onClick={() => history.push(`/discover`)}>
+                Discover
+              </CustomButton>
+            </div>
           )}
         </div>
       </div>
@@ -102,4 +215,4 @@ class WatchListPage extends Component {
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });
-export default connect(mapStateToProps)(WatchListPage);
+export default connect(mapStateToProps)(withRouter(WatchListPage));

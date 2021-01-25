@@ -30,9 +30,6 @@ class Navigation extends Component {
               <Link className='nav-link' to='/watchlist'>
                 Watch list
               </Link>
-              <Link className='nav-link' to='/myshows'>
-                My Shows
-              </Link>
               <span className='nav-link-text'>
                 Logged in to: {currentUser.name}{' '}
               </span>

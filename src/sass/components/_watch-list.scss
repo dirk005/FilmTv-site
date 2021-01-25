@@ -8,5 +8,22 @@
         margin: 5rem auto;
         width: 80%;
         height: 10rem;
+        &-text{
+            display: flex;
+            margin : 1rem;
+            font-size: 3rem;
+            color:white;
+            & span{
+                padding: 1.5rem ;
+            }
+        }
+    }
+
+    &-selections{
+        display: flex;
+        font-size: 2rem;
+        & div{
+            margin: 0 1rem;
+        }
     }
 }

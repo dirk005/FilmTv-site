@@ -12,7 +12,7 @@ class MovieDisplay extends Component {
     super(props);
 
     this.state = {
-      watched: false,      
+      watched: false,
       gotMovie: false,
     };
   }
@@ -22,7 +22,7 @@ class MovieDisplay extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.movieData.id !== this.props.movieData.id) {      
+    if (prevProps.movieData.id !== this.props.movieData.id) {
       this.handleGetDetails();
     }
   }
@@ -187,15 +187,15 @@ class MovieDisplay extends Component {
                   </CustomButton>
                   <div className="detailed-display__slide--buttons-inner">
                     <span>Watched : </span>
-                    <div className="pretty p-round p-fill p-icon detailed-display__slide--buttons-inner_check">
-                      <input
-                        type="checkbox"
-                        checked={watched}
-                        onChange={() => this.updateMovie()}
-                      />
-                      <div className="state p-info">
-                        <i className="icon mdi mdi-check"></i>
-                        <label></label>
+                    <div className="detailed-display__slide--buttons-inner_checkbox">
+                      <div class="checkbox">
+                        <input
+                          type="checkbox"
+                          checked={watched}
+                          id={`checkbox${movieData.id}`}
+                          onChange={() => this.updateMovie()}
+                        />
+                        <label for={`checkbox${movieData.id}`}></label>
                       </div>
                     </div>
                   </div>

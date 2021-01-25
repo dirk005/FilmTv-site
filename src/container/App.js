@@ -38,6 +38,7 @@ class App extends Component {
     this.props.getPopularTVStartAsync();
     this.props.getTopRatedTVStartAsync();
   }
+  
   render() {
     const { currentUser, isPending } = this.props;
     return (

@@ -33,7 +33,7 @@ class DisplayDetails extends Component {
             {type === "movie" ? (
               <MovieDisplay movieData={movieData} />
             ) : (
-              <TvDisplay movieData={movieData} />
+              <TvDisplay movieData={movieData} displaySeason={true}/>
             )}
           </div>
         ) : (
