@@ -17,7 +17,7 @@ const SignUp = ({ setCurrentUser }) => {
   const { displayName, email, password, confirmPassword } = userCredentials;
 
   const handleSubmit = (event) => {
-    let url = 'https://floating-journey-19460.herokuapp.com/';
+    let url = 'https://floating-journey-19460.herokuapp.com';
       if (process.env.NODE_ENV === 'development'){
         url = 'http://localhost:8080'
     }

@@ -20,8 +20,12 @@ class TvEpisodeLine extends Component {
   componentDidMount() {
     if (this.props.currentUser) {
       //get current episode
+      let url = "https://floating-journey-19460.herokuapp.com";
+      if (process.env.NODE_ENV === "development") {
+        url = "http://localhost:8080";
+      }
       fetch(
-        `http://localhost:8080/episode/episode/?episodeId=${this.state.episodeId}&showId=${this.state.showId}`,
+        `${url}/episode/episode/?episodeId=${this.state.episodeId}&showId=${this.state.showId}`,
         {
           headers: {
             Authorization: `Bearer ${this.props.currentUser.token}`,
@@ -45,10 +49,10 @@ class TvEpisodeLine extends Component {
 
   addEpisode = () => {
     if (this.props.currentUser) {
-      let url = 'https://floating-journey-19460.herokuapp.com/';
-      if (process.env.NODE_ENV === 'development'){
-        url = 'http://localhost:8080'
-    }
+      let url = "https://floating-journey-19460.herokuapp.com";
+      if (process.env.NODE_ENV === "development") {
+        url = "http://localhost:8080";
+      }
       fetch(`${url}/episode/episode`, {
         method: "POST",
         body: JSON.stringify({
@@ -70,9 +74,9 @@ class TvEpisodeLine extends Component {
 
   //Remove episode from user
   removeEpisode = () => {
-    let url = 'https://floating-journey-19460.herokuapp.com/';
-      if (process.env.NODE_ENV === 'development'){
-        url = 'http://localhost:8080'
+    let url = "https://floating-journey-19460.herokuapp.com";
+    if (process.env.NODE_ENV === "development") {
+      url = "http://localhost:8080";
     }
     fetch(`${url}/episode/episode`, {
       method: "DELETE",

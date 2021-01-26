@@ -30,7 +30,7 @@ class MovieDisplay extends Component {
   handleGetDetails = () => {
     if (this.props.currentUser) {
       //get current movie
-      let url = 'https://floating-journey-19460.herokuapp.com/';
+      let url = 'https://floating-journey-19460.herokuapp.com';
       if (process.env.NODE_ENV === 'development'){
         url = 'http://localhost:8080'
     }
@@ -52,7 +52,7 @@ class MovieDisplay extends Component {
 
   addMovie = () => {
     if (this.props.currentUser) {
-      let url = 'https://floating-journey-19460.herokuapp.com/';
+      let url = 'https://floating-journey-19460.herokuapp.com';
       if (process.env.NODE_ENV === 'development'){
         url = 'http://localhost:8080'
     }
@@ -76,7 +76,7 @@ class MovieDisplay extends Component {
 
   //Update movie watched status
   updateMovie = () => {
-    let url = 'https://floating-journey-19460.herokuapp.com/';
+    let url = 'https://floating-journey-19460.herokuapp.com';
       if (process.env.NODE_ENV === 'development'){
         url = 'http://localhost:8080'
     }
@@ -97,7 +97,7 @@ class MovieDisplay extends Component {
 
   //Remove movie from user
   removeMovie = () => {
-    let url = 'https://floating-journey-19460.herokuapp.com/';
+    let url = 'https://floating-journey-19460.herokuapp.com';
       if (process.env.NODE_ENV === 'development'){
         url = 'http://localhost:8080'
     }

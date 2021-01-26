@@ -29,7 +29,7 @@ class WatchListPage extends Component {
 
   handleGetMovieDetails = () => {
     if (this.props.currentUser) {
-      let url = 'https://floating-journey-19460.herokuapp.com/';
+      let url = 'https://floating-journey-19460.herokuapp.com';
       if (process.env.NODE_ENV === 'development'){
         url = 'http://localhost:8080'
     }
@@ -57,7 +57,7 @@ class WatchListPage extends Component {
 
   handleGetTvDetails = () => {
     if (this.props.currentUser) {
-      let url = 'https://floating-journey-19460.herokuapp.com/';
+      let url = 'https://floating-journey-19460.herokuapp.com';
       if (process.env.NODE_ENV === 'development'){
         url = 'http://localhost:8080'
     }
